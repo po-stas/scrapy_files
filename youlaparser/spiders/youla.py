@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import scrapy
 from scrapy.http import HtmlResponse
+from youlaparser.items import YoulaparserItem
 
 
 class YoulaSpider(scrapy.Spider):
@@ -14,7 +15,6 @@ class YoulaSpider(scrapy.Spider):
             yield response.follow(link, callback=self.parse_links)
 
     def parse_links(self, response:HtmlResponse):
-        pass
-
-# class="SerpSnippet_name__3F7Yu SerpSnippet_titleText__1Ex8A blackLink"
-# target="_blank" data-target="serp-snippet-title" title="Nissan X-Trail с пробегом">Nissan X-Trail, T31 [рестайлинг]</a>
+        title = response.xpath('//div[@data-target="advert-title"]/text()').extract_first()
+        images = response.xpath('//img[@class="PhotoGallery_photoImage__2mHGn"]/@src').extract()
+        yield YoulaparserItem(link=response.url, title=title, images=images)

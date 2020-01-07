@@ -10,5 +10,7 @@ import scrapy
 
 class YoulaparserItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    _id = scrapy.Field()
+    title = scrapy.Field()
+    link = scrapy.Field()
+    images = scrapy.Field()

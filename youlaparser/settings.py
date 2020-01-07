@@ -70,6 +70,7 @@ COOKIES_ENABLED = False
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'youlaparser.pipelines.YoulaparserPipeline': 300,
+   'youlaparser.pipelines.YoulaImagesPipeline': 100,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
